@@ -1,5 +1,56 @@
--- Add data to tables
+-- ADDED FUNCTIONS 
+-- add to class FUNCTION
+CREATE FUNCTION addClass(
+	_vehicle_class varchar
+)
+RETURNS VOID 
+LANGUAGE plpgsql AS $$
+	BEGIN 
+		INSERT INTO "class"(
+			vehicle_class
+		)VALUES(
+			_vehicle_class
+		);
+	END	
+$$
 
+SELECT addClass('big rig');
+SELECT addClass('motorcycle');
+
+SELECT *
+FROM "class";
+-- add to customer FUNCTION
+CREATE FUNCTION addCustomer(
+	_first_name varchar,
+	_last_name varchar,
+	_email varchar,
+	_phone varchar,
+	_address varchar
+)
+RETURNS VOID
+LANGUAGE plpgsql AS $$
+	BEGIN
+		INSERT INTO "customer"(
+			first_name,
+			last_name,
+			email,
+			phone,
+			address
+		)VALUES(
+			_first_name,
+			_last_name,
+			_email,
+			_phone,
+			_address
+		);
+	END
+$$
+
+SELECT addCustomer('joe', 'miller', 'joem@jm.com', '1236540987','123 W End St');
+
+SELECT * 
+FROM "customer";
+-- Add data to tables
 -- class
 INSERT INTO "class"(
 	vehicle_class
